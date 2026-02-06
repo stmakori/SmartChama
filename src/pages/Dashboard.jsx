@@ -34,14 +34,23 @@ const Dashboard = () => {
     });
 
     return (
-        <Box className="bg-slate-50 min-h-screen py-8">
+        <Box
+            sx={{
+                minHeight: '100vh',
+                background: 'linear-gradient(rgba(248, 250, 252, 0.65), rgba(248, 250, 252, 0.85)), url("/dashboard.jpg")',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundAttachment: 'fixed',
+                py: 8
+            }}
+        >
             <Container maxWidth="lg">
                 <Box className="flex items-center justify-between mb-8">
                     <Box>
                         <Typography variant="h4" sx={{ fontWeight: 800, color: '#1e293b' }}>
                             Welcome back, {user.name}!
                         </Typography>
-                        <Typography color="text.secondary">
+                        <Typography sx={{ color: '#64748b', fontWeight: 500 }}>
                             Here's what's happening with your Chama savings today.
                         </Typography>
                     </Box>
@@ -49,7 +58,13 @@ const Dashboard = () => {
 
                 <Alert
                     severity="warning"
-                    sx={{ mb: 4, borderRadius: 3, border: '1px solid #fef3c7', bgcolor: '#fffbeb' }}
+                    sx={{
+                        mb: 4,
+                        borderRadius: 3,
+                        border: '1px solid #fef3c7',
+                        bgcolor: 'rgba(255, 251, 235, 0.8)',
+                        backdropFilter: 'blur(8px)'
+                    }}
                     action={
                         <IconButton size="small"><Close fontSize="small" /></IconButton>
                     }

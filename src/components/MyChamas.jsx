@@ -5,7 +5,18 @@ import { CHAMA_PACKAGES } from '../data/mockData';
 
 const MyChamas = ({ enrolledPackages }) => {
     return (
-        <Paper sx={{ p: 3, borderRadius: 4, mb: 4 }}>
+        <Paper
+            elevation={0}
+            sx={{
+                p: 3,
+                borderRadius: 4,
+                mb: 4,
+                bgcolor: 'rgba(255, 255, 255, 0.45)',
+                backdropFilter: 'blur(12px)',
+                border: '1px solid rgba(255, 255, 255, 0.4)',
+                boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.07)'
+            }}
+        >
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
                 <Typography variant="h6" sx={{ fontWeight: 700 }}>
                     My Enrolled Chamas

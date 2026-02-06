@@ -15,10 +15,14 @@ const PackageCard = ({ chama, onSelect }) => {
                     display: 'flex',
                     flexDirection: 'column',
                     borderRadius: 4,
+                    bgcolor: 'rgba(255, 255, 255, 0.55)',
+                    backdropFilter: 'blur(12px)',
+                    border: '1px solid rgba(255, 255, 255, 0.4)',
                     boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-                    transition: 'box-shadow 0.3s',
+                    transition: 'all 0.3s',
                     '&:hover': {
                         boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
+                        bgcolor: 'rgba(255, 255, 255, 0.75)',
                     }
                 }}
             >

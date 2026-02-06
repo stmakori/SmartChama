@@ -38,7 +38,19 @@ const DashboardStats = ({ stats }) => {
         <Grid container spacing={3} sx={{ mb: 4 }}>
             {statItems.map((item, index) => (
                 <Grid item xs={12} sm={6} md={3} key={index} sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <Paper sx={{ p: 3, borderRadius: 4, display: 'flex', alignItems: 'center', gap: 2, width: '100%', maxWidth: { xs: 450, sm: 'none' } }}>
+                    <Paper sx={{
+                        p: 3,
+                        borderRadius: 4,
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 2,
+                        width: '100%',
+                        maxWidth: { xs: 450, sm: 'none' },
+                        bgcolor: 'rgba(255, 255, 255, 0.45)',
+                        backdropFilter: 'blur(12px)',
+                        border: '1px solid rgba(255, 255, 255, 0.4)',
+                        boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.07)'
+                    }}>
                         <Avatar sx={{ bgcolor: item.bg, color: item.color, width: 56, height: 56 }}>
                             {item.icon}
                         </Avatar>

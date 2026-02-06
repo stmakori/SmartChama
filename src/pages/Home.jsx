@@ -19,18 +19,33 @@ const Home = () => {
     };
 
     return (
-        <Box className="bg-slate-50 min-h-screen py-12">
+        <Box
+            sx={{
+                minHeight: '100vh',
+                background: 'linear-gradient(rgba(248, 250, 252, 0.5), rgba(248, 250, 252, 0.75)), url("/money.jpg")',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundAttachment: 'fixed',
+                py: 12
+            }}
+        >
             <Container maxWidth="lg">
                 <Box className="text-center mb-16">
-                    <Typography
-                        variant="h2"
-                        sx={{ fontWeight: 800, color: '#1e293b', mb: 2, fontSize: { xs: '2.5rem', md: '3.75rem' } }}
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
                     >
-                        Save Together, <span className="text-sky-500">Grow Faster</span>
-                    </Typography>
-                    <Typography variant="h6" sx={{ color: '#64748b', maxWidth: 600, mx: 'auto' }}>
-                        Join a digital Chama today and experience a secure, transparent, and rewarding way to pool savings with others.
-                    </Typography>
+                        <Typography
+                            variant="h2"
+                            sx={{ fontWeight: 800, color: '#1e293b', mb: 2, fontSize: { xs: '2.5rem', md: '3.75rem' } }}
+                        >
+                            Save Together, <span className="text-sky-500">Grow Faster</span>
+                        </Typography>
+                        <Typography variant="h6" sx={{ color: '#475569', maxWidth: 600, mx: 'auto', fontWeight: 500 }}>
+                            Join a digital Chama today and experience a secure, transparent, and rewarding way to pool savings with others.
+                        </Typography>
+                    </motion.div>
                 </Box>
 
                 <Typography

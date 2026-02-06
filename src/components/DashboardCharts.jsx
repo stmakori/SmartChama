@@ -11,11 +11,16 @@ const DashboardCharts = ({ contributionData, distributionData }) => {
                 {/* Contribution History Chart */}
                 <Grid item xs={12} lg={8}>
                     <Paper
-                        elevation={2}
+                        elevation={0}
                         sx={{
                             p: { xs: 2, sm: 3 },
                             height: '100%',
-                            minHeight: { xs: 300, sm: 400 }
+                            minHeight: { xs: 300, sm: 400 },
+                            bgcolor: 'rgba(255, 255, 255, 0.45)',
+                            backdropFilter: 'blur(12px)',
+                            border: '1px solid rgba(255, 255, 255, 0.4)',
+                            borderRadius: 4,
+                            boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.07)'
                         }}
                     >
                         <Typography
@@ -52,13 +57,18 @@ const DashboardCharts = ({ contributionData, distributionData }) => {
                 {/* Portfolio Mix Chart */}
                 <Grid item xs={12} lg={4}>
                     <Paper
-                        elevation={2}
+                        elevation={0}
                         sx={{
                             p: { xs: 2, sm: 3 },
                             height: '100%',
                             minHeight: { xs: 300, sm: 400 },
                             display: 'flex',
-                            flexDirection: 'column'
+                            flexDirection: 'column',
+                            bgcolor: 'rgba(255, 255, 255, 0.45)',
+                            backdropFilter: 'blur(12px)',
+                            border: '1px solid rgba(255, 255, 255, 0.4)',
+                            borderRadius: 4,
+                            boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.07)'
                         }}
                     >
                         <Typography
