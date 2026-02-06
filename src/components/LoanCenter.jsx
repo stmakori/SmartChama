@@ -12,8 +12,8 @@ const LoanCenter = ({ loans }) => {
     return (
         <Box sx={{ mb: 4 }}>
             <Grid container spacing={3}>
-                <Grid item xs={12} md={4}>
-                    <Paper sx={{ p: 3, borderRadius: 4, height: '100%', display: 'flex', flexDirection: 'column' }}>
+                <Grid item xs={12} lg={4} sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <Paper sx={{ p: 3, borderRadius: 4, height: '100%', display: 'flex', flexDirection: 'column', width: '100%', maxWidth: { xs: 500, lg: 'none' } }}>
                         <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>
                             Loan Eligibility
                         </Typography>
@@ -56,13 +56,14 @@ const LoanCenter = ({ loans }) => {
                     </Paper>
                 </Grid>
 
-                <Grid item xs={12} md={8}>
+                <Grid item xs={12} lg={8}>
                     <Paper sx={{ p: 3, borderRadius: 4, height: '100%' }}>
                         <Typography variant="h6" sx={{ fontWeight: 700, mb: 3 }}>
                             My Loans
                         </Typography>
 
-                        <TableContainer>
+                        {/* Desktop Table View */}
+                        <TableContainer sx={{ display: { xs: 'none', md: 'block' } }}>
                             <Table>
                                 <TableHead>
                                     <TableRow sx={{ '& th': { color: '#64748b', fontWeight: 600, borderBottom: '1px solid #f1f5f9' } }}>
@@ -108,6 +109,49 @@ const LoanCenter = ({ loans }) => {
                                 </TableBody>
                             </Table>
                         </TableContainer>
+
+                        {/* Mobile Card View */}
+                        <Box sx={{ display: { xs: 'flex', md: 'none' }, flexDirection: 'column', gap: 2 }}>
+                            {loans.map((loan) => (
+                                <Box key={loan.id} sx={{ p: 2, border: '1px solid #f1f5f9', borderRadius: 3 }}>
+                                    <Box className="flex justify-between items-center mb-3">
+                                        <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>ID: {loan.id}</Typography>
+                                        <Chip
+                                            label={loan.status}
+                                            size="small"
+                                            color={loan.status === 'Approved' ? 'success' : loan.status === 'Repaid' ? 'default' : 'warning'}
+                                            sx={{ fontWeight: 600, borderRadius: 1.5 }}
+                                        />
+                                    </Box>
+
+                                    <Box className="grid grid-cols-2 gap-2 mb-3">
+                                        <Box>
+                                            <Typography variant="caption" color="text.secondary">Amount</Typography>
+                                            <Typography variant="body2" sx={{ fontWeight: 700 }}>KES {loan.amount.toLocaleString()}</Typography>
+                                        </Box>
+                                        <Box>
+                                            <Typography variant="caption" color="text.secondary">Term</Typography>
+                                            <Typography variant="body2" sx={{ fontWeight: 700 }}>{loan.term}</Typography>
+                                        </Box>
+                                    </Box>
+
+                                    <Box>
+                                        <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
+                                            <Typography variant="caption" color="text.secondary">Repayment</Typography>
+                                            <Typography variant="caption" sx={{ fontWeight: 700 }}>{loan.progress}%</Typography>
+                                        </Box>
+                                        <LinearProgress
+                                            variant="determinate"
+                                            value={loan.progress}
+                                            sx={{ height: 6, borderRadius: 3, bgcolor: '#f1f5f9', '& .MuiLinearProgress-bar': { bgcolor: loan.progress === 100 ? '#10b981' : '#0ea5e9' } }}
+                                        />
+                                        <Typography variant="caption" color="text.secondary" sx={{ mt: 0.5, display: 'block' }}>
+                                            Balance: KES {loan.repaymentLeft.toLocaleString()}
+                                        </Typography>
+                                    </Box>
+                                </Box>
+                            ))}
+                        </Box>
                     </Paper>
                 </Grid>
             </Grid>

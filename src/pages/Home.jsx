@@ -4,6 +4,7 @@ import { CHAMA_PACKAGES } from '../data/mockData';
 import PackageCard from '../components/PackageCard';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Home = () => {
     const { user } = useAuth();
@@ -32,14 +33,34 @@ const Home = () => {
                     </Typography>
                 </Box>
 
-                <Typography variant="h4" sx={{ fontWeight: 700, color: '#1e293b', mb: 6 }}>
+                <Typography
+                    variant="h4"
+                    sx={{ fontWeight: 700, color: '#1e293b', mb: 6, textAlign: { xs: 'center', md: 'left' } }}
+                >
                     Available Chama Packages
                 </Typography>
 
-                <Grid container spacing={4}>
-                    {CHAMA_PACKAGES.map((chama) => (
-                        <Grid item xs={12} sm={6} md={4} key={chama.id}>
-                            <PackageCard chama={chama} onSelect={handleSelectPackage} />
+                <Grid container spacing={4} justifyContent="center" sx={{ px: { xs: 2, sm: 0 } }}>
+                    {CHAMA_PACKAGES.map((chama, index) => (
+                        <Grid
+                            item
+                            xs={12}
+                            sm={6}
+                            md={4}
+                            lg={3}
+                            key={chama.id}
+                            sx={{ display: 'flex', justifyContent: 'center' }}
+                        >
+                            <Box
+                                component={motion.div}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                sx={{ width: '100%', maxWidth: { xs: 450, sm: 'none' } }}
+                            >
+                                <PackageCard chama={chama} onSelect={handleSelectPackage} />
+                            </Box>
                         </Grid>
                     ))}
                 </Grid>

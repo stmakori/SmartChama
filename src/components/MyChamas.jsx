@@ -15,7 +15,8 @@ const MyChamas = ({ enrolledPackages }) => {
                 </Button>
             </Box>
 
-            <TableContainer>
+            {/* Desktop Table View */}
+            <TableContainer sx={{ display: { xs: 'none', md: 'block' } }}>
                 <Table sx={{ minWidth: 650 }}>
                     <TableHead>
                         <TableRow sx={{ '& th': { color: '#64748b', fontWeight: 600, borderBottom: '1px solid #f1f5f9' } }}>
@@ -81,6 +82,65 @@ const MyChamas = ({ enrolledPackages }) => {
                     </TableBody>
                 </Table>
             </TableContainer>
+
+            {/* Mobile Card View */}
+            <Box sx={{ display: { xs: 'flex', md: 'none' }, flexDirection: 'column', gap: 3 }}>
+                {enrolledPackages.map((pkg) => {
+                    const fullDetails = CHAMA_PACKAGES.find(p => p.id === pkg.packageId);
+                    return (
+                        <Box key={pkg.packageId} sx={{ p: 2, border: '1px solid #f1f5f9', borderRadius: 3 }}>
+                            <Box className="flex justify-between items-start mb-4">
+                                <Box>
+                                    <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>{fullDetails?.name}</Typography>
+                                    <Typography variant="caption" color="text.secondary">{fullDetails?.frequency} contribution</Typography>
+                                </Box>
+                                <Chip
+                                    label={pkg.paymentStatus}
+                                    size="small"
+                                    color={pkg.paymentStatus === 'Up to Date' ? 'success' : 'warning'}
+                                    sx={{ fontWeight: 600, borderRadius: 1.5 }}
+                                />
+                            </Box>
+
+                            <Box className="grid grid-cols-2 gap-4 mb-4">
+                                <Box>
+                                    <Typography variant="caption" color="text.secondary">Next Due</Typography>
+                                    <Typography variant="body2" sx={{ fontWeight: 700 }}>KES {fullDetails?.contributionAmount.toLocaleString()}</Typography>
+                                </Box>
+                                <Box>
+                                    <Typography variant="caption" color="text.secondary">Total Contributed</Typography>
+                                    <Typography variant="body2" sx={{ fontWeight: 700 }}>KES {pkg.totalContributed.toLocaleString()}</Typography>
+                                </Box>
+                            </Box>
+
+                            <Box sx={{ mb: 4 }}>
+                                <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
+                                    <Typography variant="caption" color="text.secondary">Payout Progress</Typography>
+                                    <Typography variant="caption" sx={{ fontWeight: 700 }}>{pkg.payoutProgress}%</Typography>
+                                </Box>
+                                <LinearProgress
+                                    variant="determinate"
+                                    value={pkg.payoutProgress}
+                                    sx={{ height: 6, borderRadius: 3, bgcolor: '#f1f5f9', '& .MuiLinearProgress-bar': { bgcolor: '#0ea5e9' } }}
+                                />
+                                <Typography variant="caption" color="text.secondary" sx={{ mt: 0.5, display: 'block' }}>
+                                    Next payout: {pkg.nextPayoutDate}
+                                </Typography>
+                            </Box>
+
+                            <Button
+                                component={Link}
+                                to={`/package/${pkg.packageId}`}
+                                fullWidth
+                                variant="outlined"
+                                sx={{ borderRadius: 2 }}
+                            >
+                                View Details
+                            </Button>
+                        </Box>
+                    );
+                })}
+            </Box>
         </Paper>
     );
 };
