@@ -22,7 +22,7 @@ const Home = () => {
         <Box
             sx={{
                 minHeight: '100vh',
-                background: 'linear-gradient(rgba(248, 250, 252, 0.5), rgba(248, 250, 252, 0.75)), url("/money.jpg")',
+                background: 'linear-gradient(rgba(248, 250, 252, 0.5), rgba(248, 250, 252, 0.15)), url("/moneyone.jpg")',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundAttachment: 'fixed',

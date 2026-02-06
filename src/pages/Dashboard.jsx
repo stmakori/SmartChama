@@ -37,7 +37,7 @@ const Dashboard = () => {
         <Box
             sx={{
                 minHeight: '100vh',
-                background: 'linear-gradient(rgba(248, 250, 252, 0.65), rgba(248, 250, 252, 0.85)), url("/dashboard.jpg")',
+                background: 'linear-gradient(rgba(248, 250, 252, 0.25), rgba(248, 250, 252, 0.85)), url("/coins.jpg")',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundAttachment: 'fixed',
